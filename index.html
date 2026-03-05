@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenscape | شركة تطوير الألعاب</title>
+    <meta
+      name="description"
+      content="Zenscape - نصنع تجارب ألعاب لا تُنسى. استكشف أحدث ألعابنا وتحميلها مباشرة."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== CSS Reset & Variables ===== */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --neon-blue: #00d4ff;
+        --neon-purple: #8b5cf6;
+        --neon-pink: #f472b6;
+        --dark-bg: #080c14;
+        --dark-card: #0f1624;
+        --dark-surface: #111827;
+        --dark-border: #1e293b;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --gradient-main: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+        --gradient-hero: linear-gradient(
+          135deg,
+          #080c14 0%,
+          #0f1624 50%,
+          #1a0533 100%
+        );
+        --shadow-neon-blue: 0 0 20px rgba(0, 212, 255, 0.4);
+        --shadow-neon-purple: 0 0 20px rgba(139, 92, 246, 0.4);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Cairo", sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-primary);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* ===== Scrollbar ===== */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--dark-bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--neon-purple);
+        border-radius: 3px;
+      }
+
+      /* ===== Animated Background Particles ===== */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(0, 212, 255, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(139, 92, 246, 0.07) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 60% 80%,
+            rgba(244, 114, 182, 0.04) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ===== HEADER ===== */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(8, 12, 20, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        padding: 0 5%;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .logo img {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.5));
+      }
+
+      .logo-text {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 2px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 8px 18px;
+        border-radius: 25px;
+        border: 1px solid transparent;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      nav ul li a:hover {
+        color: var(--neon-blue);
+        border-color: rgba(0, 212, 255, 0.3);
+        background: rgba(0, 212, 255, 0.08);
+        box-shadow: var(--shadow-neon-blue);
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 2px;
+        background: var(--neon-blue);
+        border-radius: 2px;
+        transition: var(--transition);
+      }
+
+      /* ===== HERO SECTION ===== */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 100px 5% 60px;
+        background: var(--gradient-hero);
+      }
+
+      /* Animated grid lines */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        animation: gridMove 20s linear infinite;
+      }
+
+      @keyframes gridMove {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(60px);
+        }
+      }
+
+      /* Glowing orbs */
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.12) 0%,
+          transparent 70%
+        );
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.15);
+          opacity: 1;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(0, 212, 255, 0.1);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        color: var(--neon-blue);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: fadeInDown 0.8s ease forwards;
+      }
+
+      .hero h1 {
+        font-family: "Cairo", sans-serif;
+        font-size: clamp(2.2rem, 6vw, 4.5rem);
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 24px;
+        animation: fadeInUp 0.8s ease 0.2s both;
+      }
+
+      .hero h1 span {
+        font-family: "Orbitron", sans-serif;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.3));
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        color: var(--text-secondary);
+        margin-bottom: 40px;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+        animation: fadeInUp 0.8s ease 0.4s both;
+      }
+
+      .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gradient-main);
+        color: #000;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 16px 40px;
+        border-radius: 50px;
+        transition: var(--transition);
+        animation: fadeInUp 0.8s ease 0.6s both;
+        box-shadow:
+          0 0 30px rgba(0, 212, 255, 0.3),
+          0 0 60px rgba(139, 92, 246, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .hero-btn:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow:
+          0 0 50px rgba(0, 212, 255, 0.5),
+          0 0 100px rgba(139, 92, 246, 0.3);
+      }
+
+      .hero-btn:hover::before {
+        opacity: 1;
+      }
+
+      .hero-btn svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .hero-btn:hover svg {
+        transform: translateX(-4px);
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        animation: bounce 2s infinite;
+        z-index: 2;
+      }
+
+      .scroll-indicator span {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        letter-spacing: 2px;
+      }
+
+      .scroll-dot {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, var(--neon-blue), transparent);
+        border-radius: 2px;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(8px);
+        }
+      }
+
+      /* ===== GAMES SECTION ===== */
+      .games-section {
+        padding: 100px 5%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-label {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--neon-purple);
+        margin-bottom: 16px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        font-weight: 900;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 16px;
+      }
+
+      .section-header p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background: var(--gradient-main);
+        margin: 20px auto 0;
+        border-radius: 2px;
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+      }
+
+      /* Games Grid */
+      .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Game Card */
+      .game-card {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: var(--transition);
+        position: relative;
+        group: true;
+      }
+
+      .game-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        padding: 1px;
+        background: var(--gradient-main);
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .game-card:hover {
+        transform: translateY(-10px);
+        box-shadow:
+          0 20px 60px rgba(0, 212, 255, 0.15),
+          0 0 40px rgba(139, 92, 246, 0.1);
+        border-color: rgba(0, 212, 255, 0.3);
+      }
+
+      .game-card:hover::before {
+        opacity: 1;
+      }
+
+      .card-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+        background: linear-gradient(135deg, #0f1624, #1a0533);
+      }
+
+      .card-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .game-card:hover .card-image-wrapper img {
+        transform: scale(1.08);
+      }
+
+      .card-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0, 212, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        color: var(--neon-blue);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(15, 22, 36, 0.9) 0%,
+          transparent 60%
+        );
+      }
+
+      /* Card placeholder when image missing */
+      .card-image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0d1528 0%, #1a0a33 100%);
+        gap: 12px;
+      }
+
+      .card-image-placeholder svg {
+        width: 64px;
+        height: 64px;
+        opacity: 0.4;
+      }
+
+      .card-image-placeholder span {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        opacity: 0.5;
+      }
+
+      .card-body {
+        padding: 24px;
+      }
+
+      .card-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+        transition: var(--transition);
+      }
+
+      .game-card:hover .card-title {
+        color: var(--neon-blue);
+        text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+      }
+
+      .card-tags {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        background: rgba(139, 92, 246, 0.12);
+        border: 1px solid rgba(139, 92, 246, 0.25);
+        color: #a78bfa;
+        font-size: 0.72rem;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-weight: 600;
+      }
+
+      .card-description {
+        color: var(--text-secondary);
+        font-size: 0.92rem;
+        line-height: 1.7;
+        margin-bottom: 22px;
+      }
+
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .card-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #f59e0b;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      /* Download Button */
+      .btn-download {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 12px 24px;
+        border-radius: 12px;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        white-space: nowrap;
+      }
+
+      .btn-download::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn-download:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow:
+          0 0 35px rgba(16, 185, 129, 0.5),
+          0 8px 20px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #34d399, #10b981);
+      }
+
+      .btn-download:hover::before {
+        left: 100%;
+      }
+
+      .btn-download svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ===== STATS SECTION ===== */
+      .stats-section {
+        padding: 60px 5%;
+        background: var(--dark-surface);
+        border-top: 1px solid var(--dark-border);
+        border-bottom: 1px solid var(--dark-border);
+        position: relative;
+        z-index: 1;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .stat-item {
+        padding: 20px;
+      }
+
+      .stat-number {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        margin-top: 6px;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: var(--dark-card);
+        border-top: 1px solid var(--dark-border);
+        padding: 40px 5%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .footer-copy {
+        color: var(--text-secondary);
+        font-size: 0.88rem;
+        text-align: center;
+      }
+
+      .footer-copy span {
+        color: var(--neon-blue);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--neon-blue);
+      }
+
+      /* ===== ANIMATIONS ===== */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        nav ul {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: rgba(8, 12, 20, 0.97);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 30px 20px;
+          gap: 10px;
+          border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+          transform: translateY(-100%);
+          opacity: 0;
+          transition: var(--transition);
+          pointer-events: none;
+        }
+
+        nav ul.open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        nav ul li a {
+          display: block;
+          text-align: center;
+          font-size: 1rem;
+          padding: 12px 20px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .games-grid {
+          grid-template-columns: 1fr;
+          max-width: 420px;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card-footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .btn-download {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header>
+      <div class="navbar">
+        <!-- Logo (right in RTL) -->
+        <a href="#" class="logo">
+          <img
+            src="logo.png"
+            alt="Zenscape Logo"
+            onerror="this.style.display = 'none'"
+          />
+          <span class="logo-text">ZENSCAPE</span>
+        </a>
+
+        <!-- Hamburger for mobile -->
+        <div
+          class="hamburger"
+          id="hamburger"
+          aria-label="القائمة"
+          role="button"
+          tabindex="0"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Nav Links -->
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#games">ألعابنا</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">🎮 Game Development Studio</div>
+        <h1>
+          مرحباً بك في
+          <span>Zenscape</span>
+        </h1>
+        <p>نصنع تجارب ألعاب لا تُنسى — إبداع لا حدود له في عالم رقمي مذهل</p>
+        <a href="#games" class="hero-btn" id="explore-btn">
+          استكشف ألعابنا
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+      </div>
+      <div class="scroll-indicator">
+        <span>SCROLL</span>
+        <div class="scroll-dot"></div>
+      </div>
+    </section>
+
+    <!-- ===== STATS SECTION ===== -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">+50K</span>
+          <div class="stat-label">تحميل نشط</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4.8★</span>
+          <div class="stat-label">تقييم المستخدمين</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <div class="stat-label">ألعاب منشورة</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3+</span>
+          <div class="stat-label">سنوات خبرة</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GAMES SECTION ===== -->
+    <section class="games-section" id="games">
+      <div class="section-header">
+        <div class="section-label">🕹️ مكتبة الألعاب</div>
+        <h2>ألعابنا المميزة</h2>
+        <p>
+          استكشف مجموعتنا من الألعاب المصممة بعناية لتقديم أفضل تجربة ترفيهية
+        </p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="games-grid">
+        <!-- Game Card: Number Fins -->
+        <div class="game-card" id="number-fins-card">
+          <div class="card-image-wrapper">
+            <img
+              src="game-pic.png"
+              alt="Number Fins Game"
+              onerror="
+                this.parentElement.innerHTML =
+                  '<div class=\'card-image-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%2300d4ff\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1\' d=\'M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z\'/></svg><span>Number Fins</span></div>'
+              "
+            />
+            <div class="card-overlay"></div>
+            <div class="card-badge">🆕 جديد</div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag">ألغاز</span>
+              <span class="tag">تحديات</span>
+              <span class="tag">للجميع</span>
+            </div>
+            <h3 class="card-title">Number Fins</h3>
+            <p class="card-description">
+              لعبة ألغاز وتحديات ممتعة تمزج بين التفكير الاستراتيجي والمرح —
+              اختبر ذكاءك وتحدَّ نفسك في مستويات مثيرة لا تنتهي!
+            </p>
+            <div class="card-footer">
+              <div class="card-rating">
+                ★★★★★
+                <span style="color: var(--text-secondary); font-weight: 400"
+                  >(4.9)</span
+                >
+              </div>
+              <a
+                href="https://www.dropbox.com/scl/fi/ubnibuxe6315pmdq9bevj/Number-Fins.apk?rlkey=jinzr4tpl6zu9uytr7k8chpnf&st=g60mu3tu&dl=1"
+                download="Number_Fins.apk"
+                class="btn-download"
+                id="download-number-fins"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download APK
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder cards (coming soon) -->
+        <div class="game-card" style="opacity: 0.5; pointer-events: none">
+          <div class="card-image-wrapper">
+            <div class="card-image-placeholder">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#8b5cf6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+              <span>قريباً...</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag">قادمة</span></div>
+            <h3 class="card-title" style="color: var(--text-secondary)">
+              لعبة جديدة
+            </h3>
+            <p class="card-description">نعمل على شيء مذهل — ترقّب!</p>
+          </div>
+        </div>
+
+        <div class="game-card" style="opacity: 0.5; pointer-events: none">
+          <div class="card-image-wrapper">
+            <div class="card-image-placeholder">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#8b5cf6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+              <span>قريباً...</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag">قادمة</span></div>
+            <h3 class="card-title" style="color: var(--text-secondary)">
+              لعبة جديدة
+            </h3>
+            <p class="card-description">نعمل على شيء مذهل — ترقّب!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="footer-logo">ZENSCAPE</div>
+        <p class="footer-copy">
+          © <span>2026</span> جميع الحقوق محفوظة لشركة
+          <span>Zenscape</span> لتطوير الألعاب
+        </p>
+        <div class="footer-links">
+          <a href="#home">الرئيسية</a>
+          <a href="#games">ألعابنا</a>
+          <a href="#contact">تواصل معنا</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== JS ===== -->
+    <script>
+      // Hamburger menu toggle
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+      });
+
+      // Close menu on link click
+      navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => navMenu.classList.remove("open"));
+      });
+
+      // Smooth scroll for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // Intersection Observer for card animation
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, i * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll('.game-card:not([style*="opacity:0.5"])')
+        .forEach((card) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(40px)";
+          card.style.transition =
+            "opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease";
+          observer.observe(card);
+        });
+    </script>
+  </body>
+</html>
