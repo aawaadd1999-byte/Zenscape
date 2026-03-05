@@ -1136,6 +1136,52 @@
             "opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease";
           observer.observe(card);
         });
+
+      // ===== Counter Animation =====
+      const counters = document.querySelectorAll('.stat-number');
+
+      // Parse each stat-number to extract: prefix, number, suffix
+      function parseStatText(text) {
+        // e.g. "+50K" => prefix="+", num=50, suffix="K"
+        // e.g. "4.8★" => prefix="",  num=4.8, suffix="★"
+        // e.g. "10+"  => prefix="",  num=10,  suffix="+"
+        // e.g. "3+"   => prefix="",  num=3,   suffix="+"
+        const match = text.trim().match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)([^0-9]*)$/);
+        if (!match) return null;
+        return { prefix: match[1], num: parseFloat(match[2]), suffix: match[3] };
+      }
+
+      function animateCounter(el, parsed, duration) {
+        const start = performance.now();
+        const isFloat = !Number.isInteger(parsed.num);
+
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = eased * parsed.num;
+          el.textContent = parsed.prefix + (isFloat ? current.toFixed(1) : Math.floor(current)) + parsed.suffix;
+          if (progress < 1) requestAnimationFrame(update);
+          else el.textContent = parsed.prefix + parsed.num + parsed.suffix;
+        }
+        requestAnimationFrame(update);
+      }
+
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            counters.forEach(el => {
+              const parsed = parseStatText(el.textContent);
+              if (parsed) animateCounter(el, parsed, 1800);
+            });
+            statsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+
+      const statsSection = document.querySelector('.stats-section');
+      if (statsSection) statsObserver.observe(statsSection);
     </script>
   </body>
 </html>
