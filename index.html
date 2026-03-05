@@ -932,7 +932,7 @@
           <div class="stat-label">تقييم المستخدمين</div>
         </div>
         <div class="stat-item">
-          <span class="stat-number">10+</span>
+          <span class="stat-number">1+</span>
           <div class="stat-label">ألعاب منشورة</div>
         </div>
         <div class="stat-item">
@@ -1144,7 +1144,7 @@
       function parseStatText(text) {
         // e.g. "+50K" => prefix="+", num=50, suffix="K"
         // e.g. "4.8★" => prefix="",  num=4.8, suffix="★"
-        // e.g. "1+"  => prefix="",  num=1,  suffix="+"
+        // e.g. "10+"  => prefix="",  num=10,  suffix="+"
         // e.g. "3+"   => prefix="",  num=3,   suffix="+"
         const match = text.trim().match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)([^0-9]*)$/);
         if (!match) return null;
