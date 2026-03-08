@@ -599,9 +599,8 @@
 
       .card-footer {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
+        align-items: stretch;
+        gap: 10px;
       }
 
       .card-rating {
@@ -613,23 +612,52 @@
         font-weight: 600;
       }
 
-      /* Download Button */
+      /* ===== Shared Button Base ===== */
+      .btn-gplay-badge,
       .btn-download {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: #fff;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.9rem;
-        padding: 12px 24px;
+        padding: 11px 18px;
         border-radius: 12px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
         transition: var(--transition);
         position: relative;
         overflow: hidden;
+        flex: 1;
+        justify-content: center;
+        min-height: 46px;
+      }
+
+      /* Google Play Badge */
+      .btn-gplay-badge {
+        background: #111;
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+      }
+
+      .btn-gplay-badge:hover {
+        background: #222;
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(100, 220, 100, 0.15);
+      }
+
+      .btn-gplay-badge:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      /* Download Button */
+      .btn-download {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: #fff;
+        border: none;
         box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-        white-space: nowrap;
       }
 
       .btn-download::before {
@@ -649,10 +677,8 @@
       }
 
       .btn-download:hover {
-        transform: translateY(-2px) scale(1.03);
-        box-shadow:
-          0 0 35px rgba(16, 185, 129, 0.5),
-          0 8px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 0 35px rgba(16, 185, 129, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
         background: linear-gradient(135deg, #34d399, #10b981);
       }
 
@@ -660,9 +686,14 @@
         left: 100%;
       }
 
+      .btn-download:active {
+        transform: translateY(0) scale(0.98);
+      }
+
       .btn-download svg {
         width: 16px;
         height: 16px;
+        flex-shrink: 0;
       }
 
       /* ===== STATS SECTION ===== */
@@ -979,12 +1010,32 @@
               لعبة تعليمية ممتعة تعتمد على استكشاف وتصوير الأسماك في أعماق البحار، مصممة خصيصاً لمساعدة الأطفال على تعلم الأرقام باللغة الإنجليزية بطريقة تفاعلية وجذابة.
             </p>
             <div class="card-footer">
-              <div class="card-rating">
-                ★★★★★
-                <span style="color: var(--text-secondary); font-weight: 400"
-                  >(4.9)</span
-                >
-              </div>
+              <!-- Google Play Badge -->
+              <a
+                href="https://play.google.com/store/apps/details?id=com.zenscape.numberfins"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-gplay-badge"
+                aria-label="احصل عليه من Google Play"
+              >
+                <svg width="20" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                  <defs>
+                    <linearGradient id="gp1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00C6FF"/><stop offset="100%" stop-color="#0072FF"/></linearGradient>
+                    <linearGradient id="gp2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF4E50"/><stop offset="100%" stop-color="#F9D423"/></linearGradient>
+                    <linearGradient id="gp3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#56AB2F"/><stop offset="100%" stop-color="#A8E063"/></linearGradient>
+                    <linearGradient id="gp4" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f7971e"/><stop offset="100%" stop-color="#ffd200"/></linearGradient>
+                  </defs>
+                  <path fill="url(#gp1)" d="M31 10 L265 256 L31 502 C16 492 8 476 8 458 L8 54 C8 36 16 20 31 10Z"/>
+                  <path fill="url(#gp4)" d="M346 176 L31 10 C44 3 60 4 73 12 L346 176Z"/>
+                  <path fill="url(#gp2)" d="M504 256 C504 272 495 286 480 294 L346 336 L265 256 L346 176 L480 218 C495 226 504 240 504 256Z"/>
+                  <path fill="url(#gp3)" d="M31 502 L265 256 L346 336 L73 500 C60 508 44 509 31 502Z"/>
+                </svg>
+                <div style="display:flex;flex-direction:column;line-height:1.2;text-align:left">
+                  <span style="font-size:0.6rem;color:rgba(255,255,255,0.7);font-weight:400">احصل عليه من</span>
+                  <span style="font-size:0.85rem;color:#fff;font-weight:700">Google Play</span>
+                </div>
+              </a>
+              <!-- Green Download Button -->
               <a
                 href="https://www.dropbox.com/scl/fi/ubnibuxe6315pmdq9bevj/Number-Fins.apk?rlkey=jinzr4tpl6zu9uytr7k8chpnf&st=g60mu3tu&dl=1"
                 download="Number_Fins.apk"
