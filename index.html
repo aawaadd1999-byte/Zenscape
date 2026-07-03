@@ -457,7 +457,6 @@
         overflow: hidden;
         transition: var(--transition);
         position: relative;
-        group: true;
       }
 
       .game-card::before {
@@ -468,6 +467,9 @@
         padding: 1px;
         background: var(--gradient-main);
         -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask:
           linear-gradient(#fff 0 0) content-box,
           linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
@@ -1012,7 +1014,7 @@
             <div class="card-footer">
               <!-- Google Play Badge -->
               <a
-                href="https://play.google.com/store/apps/details?id=com.zenscape.numberfins"
+                href="https://play.google.com/store/apps/details?id=com.Zenscape.NumberFinsOceanAlbum&pcampaignid=web_share"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-gplay-badge"
